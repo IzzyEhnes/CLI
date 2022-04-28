@@ -44,6 +44,18 @@ void execute_CLI(const char* command)
 
 
 
+void process_queue(std::queue <string> in_queue)
+{
+    while (!in_queue.empty())
+    {
+        string front = in_queue.front();
+        cout << front << endl;
+        in_queue.pop();
+    }
+}
+
+
+
 void process_input(int argc, char *argv[], char* envp[])
 {
     print_legal_commands();
@@ -82,13 +94,6 @@ void process_input(int argc, char *argv[], char* envp[])
                 temp_command += raw_commands[i];
             }
         }
-    }
-
-    while (!command_queue.empty())
-    {
-        string front = command_queue.front();
-        cout << front << endl;
-        command_queue.pop();
     }
 }
 
