@@ -30,6 +30,31 @@ void print_greeting()
 
 
 
+string extract_command(string inString)
+{
+    string command = "";
+    int currChar = 0;
+
+    while (currChar < inString.length())
+    {
+        if (inString[currChar] == ' ')
+        {
+            break;
+        }
+
+        else
+        {
+            command += inString[currChar];
+        }
+
+        currChar++;
+    }
+
+    return command;
+}
+
+
+
 bool is_legal_command(string inCommand)
 {
     for (int i = 0; i < legal_commands_length; i++)
@@ -45,7 +70,7 @@ bool is_legal_command(string inCommand)
 
 
 
-void execute_CLI(const char* command)
+void execute_command(const char* command)
 {
     system(command);
 }
@@ -66,8 +91,6 @@ void process_queue(std::queue <string> in_queue)
 
 void process_input(int argc, char *argv[], char* envp[])
 {
-    print_legal_commands();
-
     // A queue that will hold all of our commands 
     std::queue <string> command_queue;
 
@@ -108,6 +131,8 @@ void process_input(int argc, char *argv[], char* envp[])
             }
         }
     }
+
+    process_queue(command_queue);
 }
 
 
