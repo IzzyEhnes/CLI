@@ -77,14 +77,37 @@ void execute_command(const char* command)
 
 
 
-void process_queue(std::queue <string> in_queue)
+void process_queue(std::queue<string> in_queue)
 {
+    cout << in_queue.size() + 1 << " strings passed to argv[]\n\n";
+
     while (!in_queue.empty())
     {
-        string front = in_queue.front();
-        cout << front << endl;
+        string command = in_queue.front();
+
+        string command_without_args = extract_command(command);
+
+        cout << "Next string is '" << command << "'\n";
+
+        if (!is_legal_command(command_without_args))
+        {
+            cout << "'" << command_without_args << "' is not one of the predefined commands. Skipping...\n";
+        }
+
+        else
+        {
+            cout << "'" << command_without_args << "' is one of the predefined commands. Executing now...\n";
+            execute_command(command.c_str());
+            cout << endl;
+        }
+
         in_queue.pop();
+    
     }
+
+    execute_command("pwd");
+    cout << "is the current working directory.";
+    cout << "\n\nGoodbye.\n";
 }
 
 
