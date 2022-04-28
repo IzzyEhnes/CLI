@@ -68,23 +68,27 @@ void process_input(int argc, char *argv[], char* envp[])
 {
     print_legal_commands();
 
+    // A queue that will hold all of our commands 
     std::queue <string> command_queue;
 
+    // Add all CLI arguments to string raw_commands
     string raw_commands = "";
-
     for (int i = 1; i < argc; i++)
     {
         raw_commands += argv[i];
         raw_commands += " ";
     }
 
-    //cout << raw_commands;
-
+    // String where we will build the current command (and any associated arguments)
     string temp_command = "";
+
+    // Add individual commands and their arguments to command_queue
     for (int i = 0; i < raw_commands.length(); i++)
     {
+        // If a comma is encountered, this indicated the end of a single command (and any associated arguments)
         if (raw_commands[i] == ',' || i == raw_commands.length() - 1)
         {
+            // Add command to command_queue and reset temp_command
             command_queue.push(temp_command);
             temp_command = "";
         }
@@ -97,6 +101,7 @@ void process_input(int argc, char *argv[], char* envp[])
                 continue;
             }
 
+            // Add current char to temp_command
             else
             {
                 temp_command += raw_commands[i];
