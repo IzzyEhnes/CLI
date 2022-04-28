@@ -44,7 +44,7 @@ void print_greeting()
     cout << "CLI by Izzy Ehnes\n";
     cout << "Released 27 April 2022\n";
     print_legal_commands();
-    cout << "Multiple arguments of one cli command must be separated from one another by commas.\nPossible parameters of any one command are separated from the command itself (and from possible further parameters) by white space";
+    cout << "Multiple arguments of one cli command must be separated from one another by commas.\nPossible parameters of any one command are separated from the command itself (and from possible further parameters) by white space.";
     cout << "\nExample: \"pwd, ls -la\"\n\n";
 }
 
@@ -127,7 +127,7 @@ void process_queue(std::queue<string> in_queue)
         // If the command is not one of the predefined commands, alert the user and then skip it and continue
         if (!is_legal_command(command_without_args))
         {
-            cout << "'" << command_without_args << "' is not one of the predefined commands. Skipping...\n";
+            cout << "'" << command_without_args << "' is not one of the predefined commands. Skipping...\n\n";
         }
 
         // If the command is legal, execute it
