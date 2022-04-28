@@ -48,7 +48,7 @@ void process_input(int argc, char *argv[], char* envp[])
 {
     print_legal_commands();
 
-    std::queue <string> commands;
+    std::queue <string> command_queue;
 
     string raw_commands = "";
 
@@ -58,7 +58,38 @@ void process_input(int argc, char *argv[], char* envp[])
         raw_commands += " ";
     }
 
-    cout << raw_commands;
+    //cout << raw_commands;
+
+    string temp_command = "";
+    for (int i = 0; i < raw_commands.length(); i++)
+    {
+        if (raw_commands[i] == ',' || i == raw_commands.length() - 1)
+        {
+            command_queue.push(temp_command);
+            temp_command = "";
+        }
+
+        else
+        {
+            // Don't add leading space to front of command
+            if (temp_command.empty() && raw_commands[i] == ' ')
+            {
+                continue;
+            }
+
+            else
+            {
+                temp_command += raw_commands[i];
+            }
+        }
+    }
+
+    while (!command_queue.empty())
+    {
+        string front = command_queue.front();
+        cout << front << endl;
+        command_queue.pop();
+    }
 }
 
 
