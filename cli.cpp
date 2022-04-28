@@ -21,6 +21,14 @@ void print_legal_commands()
 }
 
 
+void print_greeting()
+{
+    cout << "CLI by Izzy Ehnes\n";
+    cout << "Released 27 April 2022\n";
+    print_legal_commands();
+}
+
+
 
 bool is_legal_command(string inCommand)
 {
@@ -101,5 +109,6 @@ void process_input(int argc, char *argv[], char* envp[])
 
 int main(int argc, char *argv[], char* envp[])
 {
+    print_greeting();
     process_input(argc, argv, envp);
 }
